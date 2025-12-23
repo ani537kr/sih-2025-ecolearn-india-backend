@@ -708,7 +708,7 @@ src/
 │   ├── db.ts
 │   └── env.ts
 ├── routes/
-│   ├── index.ts
+│   ├── server.ts
 │   ├── auth.routes.ts
 │   └── user.routes.ts
 ├── controllers/
