@@ -1,0 +1,346 @@
+
+# EcoLearn India – Backend REST API
+
+**Smart India Hackathon (SIH) 2025**
+**Problem Statement ID:** 25009
+
+[![Node.js](https://img.shields.io/badge/Node.js-22_LTS-339933?logo=node.js)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-5.x-000000?logo=express)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb)](https://www.mongodb.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?logo=typescript)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+---
+
+## 📘 Overview
+
+The **EcoLearn India Backend** is a **scalable, secure, and RESTful API** built using **Express.js and TypeScript**, designed to power a **gamified environmental education platform**.
+
+The backend manages authentication, learning modules, quizzes, real-world eco-challenges, gamification logic, and multi-level leaderboards for students, teachers, and administrators across India.
+
+This project is **hackathon-ready, production-aligned**, and follows **industry-standard backend architecture**.
+
+---
+
+## 🎯 Key Objectives
+
+* Promote **environmental awareness** through digital learning
+* Enable **real-world eco actions** via challenges
+* Provide **fair & transparent leaderboards**
+* Ensure **secure role-based access**
+* Support **future scale** (mobile apps, AI verification, analytics)
+
+---
+
+## 🧠 Core Features
+
+* 🔐 **Authentication & Authorization**
+
+    * JWT-based authentication
+    * Role-based access (Student / Teacher / Admin)
+
+* 📘 **Learning Modules**
+
+    * Modules & lessons CRUD
+    * Difficulty-based filtering
+    * Pagination & search
+
+* 🧠 **Quizzes**
+
+    * Module-linked quizzes
+    * Auto-evaluation & scoring
+
+* 🌱 **Eco-Challenges**
+
+    * Real-world challenges
+    * Image-based submissions
+    * Teacher/Admin approval workflow
+
+* 🏆 **Gamification**
+
+    * Eco-points
+    * Badges & streaks
+    * Multi-level leaderboards (School / State / National)
+
+* 📊 **Leaderboards**
+
+    * Optimized & indexed ranking queries
+
+* ⚠️ **Robust Error Handling**
+
+    * Centralized error handler
+    * Validation at API & DB level
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer       | Technology        |
+| ----------- | ----------------- |
+| Runtime     | Node.js (LTS)     |
+| Language    | TypeScript        |
+| Framework   | Express.js        |
+| Database    | MongoDB (Atlas)   |
+| ODM         | Mongoose          |
+| Auth        | JWT + bcrypt      |
+| Validation  | Zod               |
+| File Upload | Multer            |
+| Security    | Helmet, CORS      |
+| Logging     | Morgan            |
+| API Docs    | Swagger (OpenAPI) |
+| Testing     | Jest, Supertest   |
+| API Testing | Postman           |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+* Node.js (v22+ recommended)
+* MongoDB (Local or Atlas)
+* npm / yarn
+
+---
+
+### Installation
+
+```bash
+git clone <repository-url>
+cd ecolearn-backend
+npm install
+```
+
+---
+
+### Environment Variables
+
+Create `.env` in root:
+
+```env
+NODE_ENV=development
+PORT=5000
+
+MONGO_URI=mongodb://localhost:27017/ecolearn
+
+JWT_SECRET=supersecretkey
+JWT_EXPIRES_IN=7d
+
+CLIENT_URL=http://localhost:5173
+MAX_FILE_SIZE=5242880
+```
+
+---
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+Server runs at:
+
+```
+http://localhost:5000
+```
+
+---
+
+### Production Build
+
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 📡 API Base URL
+
+```
+/api/v1
+```
+
+---
+
+## 📦 API Response Format
+
+### ✅ Success Response
+
+```json
+{
+  "success": true,
+  "message": "Operation successful",
+  "data": {}
+}
+```
+
+### ❌ Error Response
+
+```json
+{
+  "success": false,
+  "message": "Validation failed",
+  "errors": ["Field is required"]
+}
+```
+
+---
+
+## 🔗 Core API Endpoints
+
+### 📘 Modules
+
+| Method | Endpoint       | Description           |
+| ------ | -------------- | --------------------- |
+| GET    | `/modules`     | List modules          |
+| GET    | `/modules/:id` | Module details        |
+| POST   | `/modules`     | Create module (Admin) |
+| PUT    | `/modules/:id` | Update module         |
+| DELETE | `/modules/:id` | Delete module         |
+
+---
+
+### 📚 Lessons
+
+| Method | Endpoint               |
+| ------ | ---------------------- |
+| GET    | `/modules/:id/lessons` |
+| POST   | `/modules/:id/lessons` |
+| PUT    | `/lessons/:id`         |
+| DELETE | `/lessons/:id`         |
+
+---
+
+### 🧠 Quizzes
+
+| Method | Endpoint                    |
+| ------ | --------------------------- |
+| GET    | `/quizzes/:moduleId`        |
+| POST   | `/quizzes/:moduleId/submit` |
+| PUT    | `/quizzes/:id`              |
+| DELETE | `/quizzes/:id`              |
+
+---
+
+### 🌱 Challenges
+
+| Method | Endpoint                   |
+| ------ | -------------------------- |
+| GET    | `/challenges`              |
+| GET    | `/challenges/:id`          |
+| POST   | `/challenges`              |
+| POST   | `/challenges/:id/submit`   |
+| PUT    | `/submissions/:id/approve` |
+
+---
+
+### 🏆 Leaderboard
+
+| Method | Endpoint                    |
+| ------ | --------------------------- |
+| GET    | `/leaderboard/school/:id`   |
+| GET    | `/leaderboard/state/:state` |
+| GET    | `/leaderboard/national`     |
+
+---
+
+## 🗂️ Project Structure
+
+```bash
+src/
+├── app.ts
+├── server.ts
+├── config/
+├── constants/
+├── models/
+├── repositories/
+├── services/
+├── controllers/
+├── routes/
+├── middlewares/
+├── validators/
+├── utils/
+├── uploads/
+└── types/
+```
+
+✔ Layered architecture
+✔ Clean separation of concerns
+✔ Easy scalability
+
+---
+
+## 🧪 Testing
+
+### Manual Testing
+
+* Postman collection with all endpoints
+* Auth, challenges, leaderboard flows tested
+
+### Automated Testing
+
+* Unit tests (services)
+* Integration tests (routes)
+
+```bash
+npm test
+```
+
+---
+
+## 📄 API Documentation (Swagger)
+
+After starting the server:
+
+```
+http://localhost:5000/api-docs
+```
+
+Features:
+
+* Interactive API explorer
+* Request/response schemas
+* Auth testing support
+
+---
+
+## 🐳 Deployment (Recommended)
+
+* **Backend:** Render / Railway
+* **Frontend:** Vercel
+* **Database:** MongoDB Atlas
+
+---
+
+## 🤝 Contributing
+
+1. Fork repository
+2. Create branch: `feature/your-feature`
+3. Commit with conventional commits
+4. Open Pull Request
+
+---
+
+## 📜 License
+
+MIT License
+See `LICENSE` file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+* **Smart India Hackathon 2025**
+* Government of India
+* Open-source community
+* Educators & students inspiring sustainability
+
+---
+
+## 📌 Project Status
+
+**Version:** 1.0.0
+**Status:** Hackathon-Ready MVP
+**Last Updated:** December 2024
+
